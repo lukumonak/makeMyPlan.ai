@@ -25,10 +25,12 @@ import { useNavigate } from 'react-router-dom'
 import Footer from '../custom/Footer'
 
 function Plannerpage () {
+  
   const [step, setStep] = useState(1)
   const [place, setplace] = useState()
   const [loading, setloading] = useState(false)
   const [alldata, setalldata] = useState([])
+  
   const [openDaiulog, setopenDiaulog] = useState(false)
   const navigate = useNavigate()
 
@@ -67,6 +69,7 @@ function Plannerpage () {
     const user = localStorage.getItem('user')
     if (!user) {
       setopenDiaulog(true)
+      //VVVVVVVVVVVV
       return
     }
 
@@ -121,6 +124,7 @@ function Plannerpage () {
       .then(resp => {
         console.log(resp)
         localStorage.setItem('user', JSON.stringify(resp.data))
+        window.location.reload()
         setopenDiaulog(false)
         onGeneratedata()
       })
